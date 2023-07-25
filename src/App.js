@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react';
+import { Adminpage } from './Adminpage.jsx'
+import { Header} from './Header.jsx'
+import {Loginform} from './Loginform.jsx'
 
 function App() {
+   /**this is a useState hook
+     with conditional render */
+     const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+     function login(){
+       const username = document.getElementById('username').value;
+       const password = document.getElementById('password').value;
+
+        if (username === "one" && password === "0") {
+          setIsLoggedIn(true);
+        } else {
+          alert('Invalid credentials');
+        }
+
+     }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <Header/>
+    <div className='App'>
+      <Loginform/>
     </div>
+    </>
   );
 }
 
