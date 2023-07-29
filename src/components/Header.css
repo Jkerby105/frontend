@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@100&family=Roboto+Mono:wght@300&display=swap');
+
+.header{
+    height: 5vh;
+    width: 100%;
+    background: #CEE6F3;
+    position: relative;
+    padding-bottom: 2rem;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .header h1{
+    color:black ;
+  }
+  nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+  }
+  nav h1{
+    margin: 0 15px;
+    cursor: pointer;
+  }
+  .nav-links{
+    padding: 10px 0;
+    list-style: none;
+  }
+  .nav-links li{
+    margin: 0 15px;
+    display: inline-block;
+  }
+  .nav-links li a{
+    text-decoration: none;
+    color:black;
+    padding: 5px 0;
+    font-size: 1rem;
+    position: relative;
+  }

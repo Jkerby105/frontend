@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@100&family=Roboto+Mono:wght@300&display=swap');
+
+.App{
+    text-align: center;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(#CBC3E3, white);
+  }
+
+  /*home page login*/
+.loginform, .logincredentials{
+    display: flex;
+    flex-direction: column;
+  }
+  .loginform{
+    padding: 5rem;
+    border-radius: 2rem;
+    padding: 8rem;
+    background-color: #CEE6F3;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  }
+  
+  label {
+    text-align: left;
+    font-size: 20px;
+    padding: 0.5rem 0;
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  input{
+    margin: 0.5rem 0;
+    padding: 8px;
+    width: 15rem;
+  }
+  
+  button{
+    margin-top: 20px;
+    background-color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  button:hover{
+    background-color: black;
+    color: white;
+  }
