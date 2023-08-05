@@ -1,0 +1,9 @@
+
+  /*after admin login*/
+.options button{
+    margin: 0 15px;
+  }
+  .link{
+    text-decoration: none;
+    color: inherit;
+  }

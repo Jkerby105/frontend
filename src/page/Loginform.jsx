@@ -12,23 +12,6 @@ export function Loginform() {
 
 
 export async function action({request,res}){
-  
- 
-    
-    // request.formData()
-    // .then(data => {
-
-    //   const holdData = {
-    //   username: data.get('username'),
-    //   password: data.get('password'),
-    //    }
-    //    console.log(holdData);
-       
-    //   axios.post('http://localhost:3001/login', {holdData});
-
-    // })
-    // .catch(err => console.log(err));
-
 
 
     const data = await request.formData();

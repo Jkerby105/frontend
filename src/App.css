@@ -3,6 +3,8 @@
 body{
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -82,24 +84,4 @@ button:hover{
 /*after admin login*/
 .options button{
   margin: 0 15px;
-}
-
-/*manage-vol page*/
-.contanier{
-  position: absolute;
-  /* margin-top: 5vh; */
-}
-.content{
-  width: 90vh;
-  margin-top: 5vh; /* avoids header colliding with content*/
-  border: 1px solid black;
-  padding: 280px;
-  background-color: white;
-  position: relative;
-  overflow-y:scroll;
-}
-
-.manvol-nav input{
-  position: sticky;
-  top: 0;
 }
