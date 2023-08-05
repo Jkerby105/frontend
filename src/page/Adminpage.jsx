@@ -1,14 +1,9 @@
 import React from 'react';
+import  AdminComp from '../components/AdminComp.jsx';
 
 export function Adminpage(){
 
   return(
-    <>
-    <div className ="options">
-        <button><b>Manage volunteers</b></button>
-        <button><b>Manage oppprtunities</b></button>
-    </div>
-
-    </>
-  );
+      <AdminComp/>
+  )
 }

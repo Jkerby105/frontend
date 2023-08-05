@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@100&family=Roboto+Mono:wght@300&display=swap');
 
 .header{
-    height: 5vh;
+    height: 10vh;
     width: 100%;
     background: #CEE6F3;
     position: relative;
-    padding-bottom: 2rem;
+    top: 0;
     font-family: 'Roboto Mono', monospace;
   }
 
@@ -27,8 +27,9 @@
     list-style: none;
   }
   .nav-links li{
-    margin: 0 15px;
+    margin: 10px 15px;
     display: inline-block;
+    cursor: pointer;
   }
   .nav-links li a{
     text-decoration: none;
