@@ -1,5 +1,6 @@
 import LoginComp from '../components/loginComp';
 import axios from 'axios';
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
 export function Loginform() {
 
@@ -32,21 +33,70 @@ export async function action({request,res}){
 
     const data = await request.formData();
 
-    const holdData = {
-      username: data.get('username'),
-      password: data.get('password'),
+    // const holdData = {
+    //   username: data.get('username'),
+    //   password: data.get('password'),
+    // }
+
+
+    // const holdData = {
+    //   username: sdsd,
+    //   password: ssdsd,
+    // }
+
+    // console.log(holdData);
+
+
+
+   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - \\
+
+
+
+
+    // const tempid = 6;
+
+    // const response = await fetch(`http://localhost:3001/voulnteer`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json', 
+    //   },
+    //   body: JSON.stringify(vol)
+    // });
+
+    // const vol = {
+    //   fname: 'jake',
+    //   lname: 'chris',
+    //   edit: false,
+    //   id: null
+    // }
+    const val = {
+      user: 'Admin',
+      password: 'Rally99'
     }
 
-    console.log(holdData);
+   
 
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', 
       },
-      body:  JSON.stringify(holdData),
+      body: JSON.stringify(val),
+      credentials: 'include'
     });
-    
-    console.log(response);
+
+        console.log("door");
+
+        const d = await response.json();
+         if(d.Status === "Success"){
+                alert("ok");
+         }else{
+              alert(d.Message);
+         }
+
+
+          
+
+      
 
   }
