@@ -7,7 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
 
-export function ManageVolComp() {
+export function ManageVolComp(props) {
     // const [loading, setLoading] = useState(true)
     // const [volunteers, setVolunteers] = useState([])
     

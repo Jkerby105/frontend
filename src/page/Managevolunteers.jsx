@@ -7,3 +7,18 @@ export function Managevolunteers(){
        <ManageVolComp/>
     )
 }
+
+
+export async function getVolunteer(){
+
+  const response = fetch('/volunteer', {
+       headers: 'Content-Type',
+  });
+
+
+  data = await response.json();
+
+
+
+
+}

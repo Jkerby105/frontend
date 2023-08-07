@@ -3,7 +3,7 @@ import {Adminpage} from './page/Adminpage.jsx'
 import ErrorPage from './page/Error'
 import RootLayout from './page/root';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import { Managevolunteers } from './page/Managevolunteers.jsx';
+import { Managevolunteers, getVolunteer } from './page/Managevolunteers.jsx';
 import Addvolunteer from './page/AddVolunteer.jsx';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 
         { index: true, element: <Loginform />, action: actionSub},
         {path:'/admin' ,element: <Adminpage/>},
-        {path: '/admin/managevolunteers', element: <Managevolunteers/>},
+        {path: '/admin/managevolunteers', element: <Managevolunteers/>, loader: getVolunteer },
         {path: '/admin/managevolunteers/add', element: <Addvolunteer/>},
 
       ]},
