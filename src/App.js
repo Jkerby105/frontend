@@ -5,6 +5,7 @@ import RootLayout from './page/root';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { Managevolunteers, getVolunteer } from './page/Managevolunteers.jsx';
 import Addvolunteer from './page/AddVolunteer.jsx';
+import Editvolunteer from './page/Editvolunteer.jsx';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         {path:'/admin' ,element: <Adminpage/>},
         {path: '/admin/managevolunteers', element: <Managevolunteers/>, loader: getVolunteer },
         {path: '/admin/managevolunteers/add', element: <Addvolunteer/>},
+        {path: '/admin/managevolunteers/edit', element: <Editvolunteer/>},
 
       ]},
      

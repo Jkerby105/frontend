@@ -13,19 +13,19 @@ export function SearchAndFilter() {
     const [volunteers, getVolunteers] = useState([])
 
     //usEffect function
-    useEffect(() =>{
-        const fetchData = async () =>{
+    // useEffect(() =>{
+    //     const fetchData = async () =>{
 
-        }
-    })
+    //     }
+    // })
 
 
 //load page
-    if(loading){
-        return(
-            <div>Loading..</div>
-        )
-    }
+    // if(loading){
+    //     return(
+    //         <div>Loading..</div>
+    //     )
+    // }
 
     //mapping for data ????
     // var VolunteerSearch = '';
