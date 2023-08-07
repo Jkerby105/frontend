@@ -1,7 +1,7 @@
 import { useParams } from "react-router"
 import {Link} from 'react-router-dom'
 
-//when user clicks edit volunterr next to name
+//when user clicks edit volunterr next to name //break into components
 export default function Editvolunteer() {
     const { id } = useParams
     //edit students same page design as add/ include autofill data... tbd
