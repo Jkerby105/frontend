@@ -1,24 +1,28 @@
 import {React} from 'react';
 import ManageVolComp from '../components/ManageVolComp';
+import { useLoaderData } from 'react-router-dom';
 
 export function Managevolunteers(){
 
+  const holdData = useLoaderData();
+
     return(
-       <ManageVolComp/>
+       <ManageVolComp value={holdData}/>
     )
 }
 
 
-export async function getVolunteer(){
+export async function volunteerLoader(){
 
-  const response = fetch('/volunteer', {
-       headers: 'Content-Type',
+  console.log("IN");
+
+  const response = await fetch('http://localhost:3001/volunteer', {
+    headers: {
+      'Content-Type': 'application/json' 
+    }
   });
 
-
-  data = await response.json();
-
-
-
+  const data = await response.json();
+   return data
 
 }

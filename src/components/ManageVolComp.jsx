@@ -5,55 +5,41 @@ import SearchAndFilter from './SearchAndFilter'
 import './ManageVolComp.css'
 import { Container, Row, Col } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
+import ConfirmDelete from './ConfirmDelete'
 
 
 export function ManageVolComp(props) {
+
+   const[active,setActive] = useState(false);
+
+   const data = props.value;
+
+   function pop(){
+        setActive(true);
+   }
+
+
+   function reverserPop(){
+        setActive(false);
+   }
+
     // const [loading, setLoading] = useState(true)
     // const [volunteers, setVolunteers] = useState([])
     
     
-
-    //useffect goes in here to fetch data
-    // useEffect( ()=> {
-    //     axios.get(paste api here).then(res =>{
-                //console.log(res)
-                //setVolunteers(res.data.volunteers);
-                //setLoading(false)
-    //     })
-
-    // }, [])
-
     // if(loading){
     //     return(
     //     <div>Loading..</div>
     //     )
     // }
 
-    // var VolunteerDetails = '';
-    // VolunteerDetails = volunteers.map ((item, index) =>{
-    //     return(
-    //         <tr key={index}>
-    //             <td>{item.id}</td>
-    //             <td>{item.first}</td>
-    //             <td>{item.last}</td>
-    //             <td>{item.opportunities}</td>
-    //             <td>{item.approval}</td>
-    //             <td>
-    //                 <Link to='/' className='btn btn-sucess'>Edit</Link>
-    //             </td>
-    //             <td>
-    //                 <button className='bt tbn-danger'>Delete</button>
-            
-    //             </td>
-    //         </tr>
-    //     )
-
-    // });
-
+  
 
     return (
         <>
         <SearchAndFilter/>
+                {active && <ConfirmDelete value={active} reverse={reverserPop} />}
+    
                 <div className='container'>
                     <div className='col-md 12'>
                         <div className='card'>
@@ -77,8 +63,22 @@ export function ManageVolComp(props) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {/* {VolunteerDetails} */}
-
+                                        {data.map ((item) => (
+                                                <tr key={item.VolunteerID}>
+                                                    <td>{item.VolunteerID}</td>
+                                                    <td>{item.Fname}</td>
+                                                    <td>{item.Lname}</td>
+                                                    <td>yes</td>
+                                                    <td>{item.Approval_Status}</td>
+                                                    <td>
+                                                    <Link to='/' className='btn btn-success'>Edit</Link>
+                                                    </td>
+                                                    <td>
+                                                    <button onClick={pop} className='btn btn-danger'>Delete</button>
+                                                    </td>
+                                                </tr>
+                                        ))}
+                                        
                                     </tbody>
                                 </table>
                             </div>
