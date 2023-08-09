@@ -12,9 +12,7 @@ export function Managevolunteers(){
 }
 
 
-export async function volunteerLoader(){
-
-  console.log("IN");
+export async function loader(){
 
   const response = await fetch('http://localhost:3001/volunteer', {
     headers: {
@@ -24,5 +22,18 @@ export async function volunteerLoader(){
 
   const data = await response.json();
    return data
+
+}
+
+export async function action({request,parms}){
+    const val= await request.formData();
+  
+    const response  = await fetch('', {
+
+
+
+    });
+
+  console.log("IN => Action");
 
 }
