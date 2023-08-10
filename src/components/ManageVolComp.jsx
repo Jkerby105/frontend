@@ -10,19 +10,25 @@ export function ManageVolComp(props) {
   const navigate = useNavigate();
   const submit = useSubmit();
 
-  const [active, setActive] = useState({Active: false, id: -1});
+  const [active, setActive] = useState({Active: false, id: -1});  
   
   const data = props.value;
- 
+  
   function pop(id) {
     setActive({Active:true, id:id});
   }
-
+  
   function reverserPop(holdValue) {
+      
+      if(holdValue.onActive){
 
+        setActive({Active: false, id: holdValue.holdId});
+           
+      }else{
+        setActive({Active: holdValue.onActive, id: holdValue.holdId});
+      }
 
-    setActive({Active: holdValue.onActive, id: holdValue.holdID});
-      if(active.Active){
+      if(holdValue.onActive){
           submit({val: active.id}, {method: "delete"});
       }
   }

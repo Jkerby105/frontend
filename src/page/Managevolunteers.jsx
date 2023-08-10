@@ -1,6 +1,6 @@
 import {React} from 'react';
 import ManageVolComp from '../components/ManageVolComp';
-import { useLoaderData } from 'react-router-dom';
+import { redirect, useLoaderData } from 'react-router-dom';
 
 export function Managevolunteers(){
 
@@ -28,12 +28,24 @@ export async function loader(){
 export async function action({request,parms}){
     const val= await request.formData();
   
-    const response  = await fetch('', {
+        console.log("object");
+        const cc = val.get('val');
+        console.log(cc);
 
-
-
+    
+    const response  = await fetch('http://localhost:3001/voulnteer/' + cc,  {
+          method: 'Delete',
+          headers: {
+            'Content-Type' : 'application/json'
+          }
     });
 
-  console.log("IN => Action");
+    console.log(response);
+
+      if(response.ok){
+        
+        return redirect('/admin/managevolunteers');
+      }
+
 
 }

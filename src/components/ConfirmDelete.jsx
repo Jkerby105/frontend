@@ -5,8 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 
 function ConfirmDelete(props) {
 
-  
-    
     const handleClose = () => {
         props.reverse({onActive: false, holdID: -1});
     }
