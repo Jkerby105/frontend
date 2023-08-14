@@ -1,6 +1,6 @@
 import {React} from 'react';
 import ManageVolComp from '../components/ManageVolComp';
-import { redirect, useLoaderData } from 'react-router-dom';
+import { json, redirect, useLoaderData } from 'react-router-dom';
 
 export function Managevolunteers(){
 
@@ -20,7 +20,10 @@ export async function loader(){
     }
   });
 
+
+
   const data = await response.json();
+
    return data
 
 }
@@ -37,7 +40,8 @@ export async function action({request,parms}){
           method: 'Delete',
           headers: {
             'Content-Type' : 'application/json'
-          }
+          },
+          
     });
 
     console.log(response);

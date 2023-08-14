@@ -14,6 +14,13 @@ export default function Addvolunteer() {
             <div className='card-body'>
             <div className="form-control-sm">
                 <div className="row g-3">
+                <div className="col-md-6">
+                        <div className="mb-3">
+
+                            <label for='firstName' class='form-label'>Email</label>
+                            <input type='text' class='form-control' id='firstname' />
+                        </div>
+                    </div>
                     <div className="col-md-6">
                         <div className="mb-3">
 

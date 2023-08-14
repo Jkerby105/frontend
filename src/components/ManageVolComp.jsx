@@ -37,9 +37,9 @@ export function ManageVolComp(props) {
   return (
     <>
       <SearchAndFilter />
-
       {active.Active && <ConfirmDelete value={active.Active} value2={active.id} reverse={reverserPop} />}
 
+      <Link to='/admin' id="move"  className='btn btn-warning float-end'>Back</Link>
       <div className="container">
         <div className="col-md 12">
           <div className="card">
