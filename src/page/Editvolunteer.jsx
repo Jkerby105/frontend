@@ -192,7 +192,7 @@ export default function Editvolunteer() {
                             </div>
 
 
-                            <button type='button' className="btn btn-success">Submit</button>
+                            <button type='button' className="btn btn-success">Update</button>
 
 
                         </div>
