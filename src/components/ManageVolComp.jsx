@@ -9,34 +9,69 @@ export function ManageVolComp(props) {
 
   const navigate = useNavigate();
   const submit = useSubmit();
+ 
+  const [active, setActive] = useState({ Active: false, id: -1 });
+   //for search 
+   const [searchResults, setSearchResults] = useState(null)
+   const handleSearchResults = (results) => {
+    setSearchResults(results)
+   }
 
-  const [active, setActive] = useState({Active: false, id: -1});  
-  
   const data = props.value;
-  
+  const displayData = searchResults || data;
+
   function pop(id) {
-    setActive({Active:true, id:id});
+    setActive({ Active: true, id: id });
   }
-  
+
   function reverserPop(holdValue) {
-      
-      if(holdValue.onActive){
 
-        setActive({Active: false, id: holdValue.holdId});
-           
-      }else{
-        setActive({Active: holdValue.onActive, id: holdValue.holdId});
-      }
+    if (holdValue.onActive) {
 
-      if(holdValue.onActive){
-          submit({val: active.id}, {method: "delete"});
-      }
+      setActive({ Active: false, id: holdValue.holdId });
+
+    } else {
+      setActive({ Active: holdValue.onActive, id: holdValue.holdId });
+    }
+
+    if (holdValue.onActive) {
+      submit({ val: active.id }, { method: "delete" });
+    }
   }
+
+
+
+  //fix data.map so it is clean code
+  var userDetails = ''
+  var userDetails = displayData.map((item) => {
+
+    return (
+      <tr key={item.VolunteerID}>
+        <td>{item.VolunteerID}</td>
+        <td>{item.Fname}</td>
+        <td>{item.Lname}</td>
+        <td>yes</td>
+        <td>{item.Approval_Status}</td>
+        <td>
+          <Link to="/admin/managevolunteers/edit" className="btn btn-success">
+            Edit
+          </Link>
+        </td>
+        <td>
+          <button onClick={event => pop(item.VolunteerID)} className="btn btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    )
+  })
+  //
+
 
 
   return (
     <>
-      <SearchAndFilter />
+      <SearchAndFilter onSearchResults = {handleSearchResults}/>
 
       {active.Active && <ConfirmDelete value={active.Active} value2={active.id} reverse={reverserPop} />}
 
@@ -68,25 +103,7 @@ export function ManageVolComp(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item) => (
-                    <tr key={item.VolunteerID}>
-                      <td>{item.VolunteerID}</td>
-                      <td>{item.Fname}</td>
-                      <td>{item.Lname}</td>
-                      <td>yes</td>
-                      <td>{item.Approval_Status}</td>
-                      <td>
-                        <Link to="/" className="btn btn-success">
-                          Edit
-                        </Link>
-                      </td>
-                      <td>
-                      <button onClick={event => pop(item.VolunteerID)} className="btn btn-danger">
-                        Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {userDetails}
                 </tbody>
               </table>
             </div>

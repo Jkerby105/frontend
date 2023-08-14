@@ -25,6 +25,7 @@ function App() {
         {path: '/admin/managevolunteers/edit', element: <Editvolunteer/>},
         {path: '/admin/manageopportunities', element: <Manageopportunities/>},
         {path: '/admin/manageopportunities/add', element:<AddOpportunity/>},
+        
 
       ]},
      
