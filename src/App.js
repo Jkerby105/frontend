@@ -6,6 +6,8 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { Managevolunteers,loader as volunteerLoader, action as volunteerAction } from './page/Managevolunteers.jsx';
 import Addvolunteer from './page/AddVolunteer.jsx';
 import Editvolunteer from './page/Editvolunteer.jsx';
+import Manageopportunities from './page/Manageopportunities.jsx';
+import AddOpportunity from './page/AddOpportunity.jsx';
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
         action: volunteerAction, loader:volunteerLoader},
         {path: '/admin/managevolunteers/add', element: <Addvolunteer/>},
         {path: '/admin/managevolunteers/edit', element: <Editvolunteer/>},
+        {path: '/admin/manageopportunities', element: <Manageopportunities/>},
+        {path: '/admin/manageopportunities/add', element:<AddOpportunity/>},
 
       ]},
      
