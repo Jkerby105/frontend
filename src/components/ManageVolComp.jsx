@@ -7,8 +7,6 @@ import ConfirmDelete from "./ConfirmDelete";
 import ConfirmDelete2 from "./ConfirmDelete2";
 
 export function ManageVolComp(props) {
-  console.log("westside");
-
   const navigate = useNavigate();
   const submit = useSubmit();
 

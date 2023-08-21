@@ -4,7 +4,6 @@ import { Link, redirect, Form, useLoaderData} from "react-router-dom";
 export function EditEmergency() {
    
     const data = useLoaderData();
-    console.log(data[0][0].EContactID);
 
     return (
 
@@ -78,8 +77,6 @@ export async function action({request,params}){
     EmergencyAddress: data.get('emergencyAddress'),
   }
 
-  console.log("noFear");
-  console.log(info);
 
   const response = await fetch("http://localhost:3001/emergency/Edit", {
     method: "POST",

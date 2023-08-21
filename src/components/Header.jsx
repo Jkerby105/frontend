@@ -7,7 +7,6 @@ function Header() {
   const navigate = useNavigate();
 
   function logout() {
-    console.log("hi");
     removeToken();
     navigate("/");
   }

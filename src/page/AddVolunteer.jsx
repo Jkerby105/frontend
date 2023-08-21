@@ -324,7 +324,6 @@ export async function action({ request, params }) {
   });
 
   if (response.ok) {
-    console.log("ok");
     return redirect("/admin/managevolunteers");
   }
 }
