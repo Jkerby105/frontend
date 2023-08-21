@@ -29,6 +29,7 @@ export function ManageVolComp(props) {
     checkbox6: false
 })
 
+  const displayData = props.value;
   const data = props.value;
 
 
@@ -127,42 +128,42 @@ export function ManageVolComp(props) {
 
 
 
-  const displayedData = filteredData.filter(item => {
-    if(filter.checkbox6) return true;
-    if(filter.checkbox1 && item.Approval_Status === 'Approved' && item.Approval_Status === 'Pending') return;
-    if(filter.checkbox2 && item.Approval_Status === 'Approved') return true
-    if(filter.checkbox3 && item.Approval_Status === 'Pending') return true
-    if(filter.checkbox4 && item.Approval_Status === 'Disapproved') return true
-    if(filter.checkbox5 && item.Approval_Status === 'Inactive') return true
-    return false;
-  })
+  // const displayedData = filteredData.filter(item => {
+  //   if(filter.checkbox6) return true;
+  //   if(filter.checkbox1 && item.Approval_Status === 'Approved' && item.Approval_Status === 'Pending') return;
+  //   if(filter.checkbox2 && item.Approval_Status === 'Approved') return true
+  //   if(filter.checkbox3 && item.Approval_Status === 'Pending') return true
+  //   if(filter.checkbox4 && item.Approval_Status === 'Disapproved') return true
+  //   if(filter.checkbox5 && item.Approval_Status === 'Inactive') return true
+  //   return false;
+  // })
  
-  const displayDetails = displayedData.map(item => {
-    return(
-      <tr key={item.VolunteerID}>
-          <td>{item.VolunteerID}</td>
-          <td>{item.Fname}</td>
-          <td>{item.Lname}</td>
-          <td>yes</td>
-          <td>{item.Approval_Status}</td>
-          <td>
-              <Link to="/admin/managevolunteers/edit" className="btn btn-success">
-                  Edit
-              </Link>
-          </td>
-          <td>
-              <button onClick={event => pop(item.VolunteerID)} className="btn btn-danger">
-                  Delete
-              </button>
-          </td>
-      </tr>
-      )
-  });
+  // const displayDetails = displayedData.map(item => {
+  //   return(
+  //     <tr key={item.VolunteerID}>
+  //         <td>{item.VolunteerID}</td>
+  //         <td>{item.Fname}</td>
+  //         <td>{item.Lname}</td>
+  //         <td>yes</td>
+  //         <td>{item.Approval_Status}</td>
+  //         <td>
+  //             <Link to="/admin/managevolunteers/edit" className="btn btn-success">
+  //                 Edit
+  //             </Link>
+  //         </td>
+  //         <td>
+  //             <button onClick={event => pop(item.VolunteerID)} className="btn btn-danger">
+  //                 Delete
+  //             </button>
+  //         </td>
+  //     </tr>
+  //     )
+  // });
 
   return (
     <>
 
-      <SearchAndFilter setFilter = {setFilter} filter ={filter} setResults={setResults} onSearch={() => setHasSearched(true)} />
+      {/* <SearchAndFilter setFilter = {setFilter} filter ={filter} setResults={setResults} onSearch={() => setHasSearched(true)} /> */}
 
       {active2.Active && (
         <ConfirmDelete2
@@ -212,9 +213,9 @@ export function ManageVolComp(props) {
                   </tr>
                 </thead>
                 <tbody>{userDetails}</tbody>
-                <tbody>
+                {/* <tbody>
                   {hasSearched ? searchDetails : userDetails}
-                </tbody>
+                </tbody> */}
               </table>
             </div>
           </div>
