@@ -8,6 +8,7 @@ import Addvolunteer from './page/AddVolunteer.jsx';
 import Editvolunteer from './page/Editvolunteer.jsx';
 import Manageopportunities from './page/Manageopportunities.jsx';
 import AddOpportunity from './page/AddOpportunity.jsx';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
         {path: '/admin/managevolunteers/edit', element: <Editvolunteer/>},
         {path: '/admin/manageopportunities', element: <Manageopportunities/>},
         {path: '/admin/manageopportunities/add', element:<AddOpportunity/>},
-        
+
 
       ]},
      

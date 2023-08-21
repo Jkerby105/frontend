@@ -4,3 +4,9 @@
     position: absolute;
     top: 10vh;
 }
+
+/* takes away extra space with width: auto and add aspacce-between with margin-tight*/
+.check{
+    width: auto;
+    margin-right: 5px; 
+}
