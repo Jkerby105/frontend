@@ -1,21 +1,41 @@
 import { React } from "react";
 import "./Header.css";
-import {Link, Route, Routes} from 'react-router-dom';
+import { Link,useNavigate } from "react-router-dom";
+import { removeToken } from "../util/authentication";
+
 function Header() {
+  const navigate = useNavigate();
+
+  function logout() {
+    console.log("hi");
+    removeToken();
+    navigate("/");
+  }
+
   return (
     <>
       <div className="header">
         <nav>
-          <Link to ='/' className='link' ><h1>Volunteer app</h1></Link>
+          <Link to="/admin" className="link">
+            <h1>Volunteer app</h1>
+          </Link>
           <ul className="nav-links">
             <li>
-              <Link to ='/'>Home</Link>
+              <button
+                className="btn btn-success"
+                onClick={(event) => {
+                  navigate("/admin");
+                }}
+              >
+                Home
+              </button>
             </li>
-            <li>Logout</li>
+            <button className="btn btn-primary" onClick={logout}>
+              Logout
+            </button>
           </ul>
         </nav>
       </div>
-      
     </>
   );
 }

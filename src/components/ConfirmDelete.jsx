@@ -1,22 +1,17 @@
-import { Link, redirect} from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 function ConfirmDelete(props) {
+  const handleClose = () => {
+    props.reverse({ onActive: false, holdID: -1 });
+  };
 
-    const handleClose = () => {
-        props.reverse({onActive: false, holdID: -1});
-    }
-
-    const handleVolunteerPop = (id) => {
-      props.reverse({onActive: true, holdId: id});
-    }
+  const handleVolunteerPop = (id) => {
+    props.reverse({ onActive: true, holdId: id });
+  };
 
   return (
     <>
-
-
       <Modal show={props.value} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Deletion</Modal.Title>
@@ -26,7 +21,12 @@ function ConfirmDelete(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button onClick={event => {handleVolunteerPop(props.value2)}}  variant="primary" >
+          <Button
+            onClick={(event) => {
+              handleVolunteerPop(props.value2);
+            }}
+            variant="primary"
+          >
             Delete
           </Button>
         </Modal.Footer>

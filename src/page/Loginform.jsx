@@ -1,85 +1,32 @@
-import LoginComp from '../components/loginComp';
-import axios from 'axios';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import LoginComp from "../components/loginComp";
+import {redirect} from "react-router-dom";
 
 export function Loginform() {
-
-    return  (
-        <LoginComp/>
-    )
+  return <LoginComp />;
 }
 
+export async function action({ request, params }) {
+  const data = await request.formData();
 
+  const val = {
+    user: "Admin",
+    password: "Rally99",
+  };
 
-export async function action({request,res}){
+  const response = await fetch("http://localhost:3001/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(val),
+  });
 
-
-    const data = await request.formData();
-
-    // const holdData = {
-    //   username: data.get('username'),
-    //   password: data.get('password'),
-    // }
-
-
-    // const holdData = {
-    //   username: sdsd,
-    //   password: ssdsd,
-    // }
-
-    // console.log(holdData);
-
-
-
-   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - \\
-
-
-
-
-    // const tempid = 6;
-
-    // const response = await fetch(`http://localhost:3001/voulnteer`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json', 
-    //   },
-    //   body: JSON.stringify(vol)
-    // });
-
-    // const vol = {
-    //   fname: 'jake',
-    //   lname: 'chris',
-    //   edit: false,
-    //   id: null
-    // }
-    const val = {
-      user: 'Admin',
-      password: 'Rally99'
-    }
-
-   
-
-    const response = await fetch('http://localhost:3001/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json', 
-      },
-      body: JSON.stringify(val),
-      credentials: 'include'
-    });
-
-        console.log("door");
-
-        const d = await response.json();
-         if(d.Status === "Success"){
-                alert("ok");
-         }else{
-              alert(d.Message);
-         }
-
-
-          
-
-      
-
+  const d = await response.json();
+  if (d.Status === "Success") {
+    localStorage.setItem("token", d.authToken);
+    return redirect("/admin");
+  } else {
+    alert(d.Message);
+    return redirect("/");
   }
+}

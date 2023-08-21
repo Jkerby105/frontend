@@ -1,55 +1,48 @@
-import {React} from 'react';
-import ManageVolComp from '../components/ManageVolComp';
-import { json, redirect, useLoaderData } from 'react-router-dom';
+import { React } from "react";
+import ManageVolComp from "../components/ManageVolComp";
+import {redirect, useLoaderData } from "react-router-dom";
+import { tokenLoader } from "../util/authentication";
 
-export function Managevolunteers(){
-
+export function Managevolunteers() {
   const holdData = useLoaderData();
 
-    return(
-       <ManageVolComp value={holdData}/>
-    )
+  return <ManageVolComp value={holdData} />;
 }
 
+export async function loader() {
+  const token = tokenLoader();
 
-export async function loader(){
-
-  const response = await fetch('http://localhost:3001/volunteer', {
+  const response = await fetch("http://localhost:3001/volunteer", {
     headers: {
-      'Content-Type': 'application/json' 
-    }
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
   });
-
-
 
   const data = await response.json();
 
-   return data
+  if (data.Error) {
+    return redirect("/");
+  }
 
+  return data;
 }
 
-export async function action({request,parms}){
-    const val= await request.formData();
-  
-        console.log("object");
-        const cc = val.get('val');
-        console.log(cc);
+export async function action({ request, params }) {
+  const val = await request.formData();
+  const cc = val.get("val");
 
-    
-    const response  = await fetch('http://localhost:3001/voulnteer/' + cc,  {
-          method: 'Delete',
-          headers: {
-            'Content-Type' : 'application/json'
-          },
-          
-    });
+  const token = tokenLoader();
 
-    console.log(response);
+  const response = await fetch("http://localhost:3001/volunteer/" + cc, {
+    method: "Delete",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  });
 
-      if(response.ok){
-        
-        return redirect('/admin/managevolunteers');
-      }
-
-
+  if (response.ok) {
+    return redirect("/admin/managevolunteers");
+  }
 }

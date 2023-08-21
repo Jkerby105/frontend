@@ -1,9 +1,15 @@
-import { Link, redirect,Form } from "react-router-dom";
-import { tokenLoader } from "../util/authentication";
+import React from "react";
+import { Link, redirect, Form, useLoaderData } from "react-router-dom";
+import { tokenLoader } from "../../util/authentication";
 
-export function AddOpportunity() {
+export function EditOpportunity() {
+  const data = useLoaderData();
+
   return (
-    <Form method="post" action="/admin/manageopportunities/add">
+    <Form
+      method="post"
+      action={`/admin/manageopportunities/edit/${data[0].OpportunitiesID}`}
+    >
       <div className="card">
         <div className="col-md 12">
           <div className="card-header">
@@ -30,6 +36,7 @@ export function AddOpportunity() {
                       name="title"
                       className="form-control"
                       id="title"
+                      defaultValue={data[0].Title}
                     />
                   </div>
                 </div>
@@ -43,12 +50,13 @@ export function AddOpportunity() {
                       name="description"
                       className="form-control"
                       id="description"
+                      defaultValue={data[0].Description}
                     />
                   </div>
                 </div>
               </div>
               <button type="sumit" className="btn btn-success">
-                Submit
+                Update
               </button>
             </div>
           </div>
@@ -58,13 +66,36 @@ export function AddOpportunity() {
   );
 }
 
+export async function loader({ request, params }) {
+  const id = params.id;
+
+  const token = tokenLoader();
+
+  const response = await fetch("http://localhost:3001/opportunities/" + id, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+    return data;
+  }
+}
+
 export async function action({ request, params }) {
+  const id = params.id;
   const value = await request.formData();
+
   const token = tokenLoader();
 
   const data = {
     Title: value.get("title"),
     Description: value.get("description"),
+    Edit: true,
+    Id: id,
   };
 
   const response = await fetch("http://localhost:3001/opportunities", {
