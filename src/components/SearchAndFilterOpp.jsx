@@ -1,34 +1,24 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import SplitButton from "react-bootstrap/SplitButton";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function SearchAndFilterOpp() {
-  return (
-    <form>
-      <div className="adminheader">
-        <InputGroup className="mb-3">
-          <SplitButton
-            variant="secondary" //changes color/style of button
-            title="Submit"
-            id="segmented-button-dropdown-2"
-            autoClose="outside" //how the button reacts to user clicks
-            type="submit"
-          >
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="Most recent" />
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="Approved" />
-            </Dropdown.Item>
-          </SplitButton>
-          <Form.Control
-            aria-label="Text input with dropdown button"
-            placeholder="Search"
-          />
-        </InputGroup>
-      </div>
-    </form>
-  );
+
+    return (
+        <form>
+            <div className='adminheader'>
+                <div className="input-group mb-3">
+                    <button type="button" className="btn btn-outline-secondary">Search</button>
+                    <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span className="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#">Most recent</a></li>
+                        <li><a className="dropdown-item" href="#">Approved</a></li>
+                    </ul>
+                    <input type="text" className="form-control" aria-label="Text input with segmented dropdown button" />
+                </div>
+            </div>
+
+        </form>
+
+    )
 }

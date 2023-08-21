@@ -1,88 +1,82 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import SplitButton from "react-bootstrap/SplitButton";
-import { useEffect, useState } from "react";
-import "./SearchAndFilter.css";
+import { useEffect, useState } from 'react';
+import './SearchAndFilter.css'
 
-export function SearchAndFilter() {
-  //fetch api data based on user input if not found return null / 'no users'
-  const [loading, setLoading] = useState(true);
-  const [input, setinput] = useState("");
-  const [volunteers, getVolunteers] = useState([]);
+export function SearchAndFilter({ setResults, onSearch,filter, setFilter }) {
+    // { onSearchResults }
+    //fetch api data based on user input if not found return null / 'no users'
+    const [query, setQuery] = useState('')
+    //for checkbox filters state checked(true) or unchecked (false)
+    
 
-  //usEffect function
-  // useEffect(() =>{
-  //     const fetchData = async () =>{
 
-  //     }
-  // })
+    const input = () => {
+        console.log(query)
+    }
 
-  //load page
-  // if(loading){
-  //     return(
-  //         <div>Loading..</div>
-  //     )
-  // }
+        //for search bar to filter by fname,lname, and ID
+    useEffect(() => {
+        fetch('http://localhost:3001/volunteer')
+            .then(res => res.json())
+            .then(data => {
+                const filteredData = data.filter(item => {
+                    return (
+                        String(item.VolunteerID).includes(query) ||
+                        item.Fname.toLowerCase().includes(query.toLowerCase()) ||
+                        item.Lname.toLowerCase().includes(query.toLowerCase())
+                    );
+                });
+                setResults(filteredData);
+                onSearch();
+            });
+    }, [query]);
 
-  //mapping for data ????
-  // var VolunteerSearch = '';
-  // VolunteerSearch = volunteers.map ((item, index) =>{
-  //     return(
-  //         <tr key={index}>
-  //             <td>{item.id}</td>
-  //             <td>{item.first}</td>
-  //             <td>{item.last}</td>
-  //             <td>{item.opportunities}</td>
-  //             <td>
-  //                 <Link to='/' className='btn btn-sucess'>Edit</Link>
-  //             </td>
-  //             <td>
-  //                 <button className='bt tbn-danger'>Delete</button>
 
-  //             </td>
-  //         </tr>
-  //     )
-  // });
+    const handleChange = (event) => {
+        setFilter(prevState => ({
+            ...prevState,
+            [event.target.name]: event.target.checked
+        }));
+    };
 
-  return (
-    <form>
-      <div className="adminheader">
-        <InputGroup className="mb-3">
-          <SplitButton
-            variant="secondary" //changes color/style of button
-            title="Submit"
-            id="segmented-button-dropdown-2"
-            autoClose="outside" //how the button reacts to user clicks
-            type="submit"
-          >
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="Approved/Pending" />
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="Approved" />
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="Pending" />
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="Disapproved" />
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="Inactive" />
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-              <Form.Check type="checkbox" label="All" />
-            </Dropdown.Item>
-          </SplitButton>
-          <Form.Control
-            aria-label="Text input with dropdown button"
-            placeholder="Search"
-          />
-        </InputGroup>
-      </div>
-    </form>
-  );
+
+
+
+
+    return (
+
+        <div className='adminheader'>
+            <div className="input-group mb-3">
+                <button type="button" onClick={input} className="btn btn-outline-secondary">Search</button>
+                <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span className="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul className="dropdown-menu">
+                    <li>
+                        <label className="dropdown-item" label='Approved/Pending' ><input className='check' checked={filter.checkbox1} onChange ={handleChange}  name='checkbox1' type='checkbox' />Approved/Pending</label>
+                    </li>
+                    <li>
+                        <label className="dropdown-item" label='Approved' ><input className='check' checked={filter.checkbox2}  onChange ={handleChange} name='checkbox2' type='checkbox' />Approved</label>
+                    </li>
+                    <li>
+                        <label className="dropdown-item" label='Pending' ><input className='check' checked={filter.checkbox3}  onChange ={handleChange} name='checkbox3'  type='checkbox' />Pending</label>
+                    </li>
+                    <li>
+                        <label className="dropdown-item" label='Disapproved' ><input className='check' checked={filter.checkbox4}  onChange ={handleChange} name='checkbox4'   type='checkbox' />Disapproved</label>
+                    </li>
+                    <li>
+                        <label className="dropdown-item" label='Inactive' ><input className='check' checked={filter.checkbox5}  onChange ={handleChange} name='checkbox5' type='checkbox' />Inactive</label>
+                    </li>
+                    <li>
+                        <label className="dropdown-item" label='All' ><input className='check'  checked={filter.checkbox6} onChange ={handleChange}  name='checkbox6' type='checkbox' />All </label>
+                    </li>
+                </ul>
+                <input type="search" value={query} className="form-control" aria-label="Text input with segmented dropdown button" onChange={e => setQuery(e.target.value)} />
+            </div>
+        </div>
+
+
+
+    )
 }
 
 export default SearchAndFilter;
