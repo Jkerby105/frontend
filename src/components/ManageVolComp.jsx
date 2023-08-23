@@ -62,8 +62,12 @@ export function ManageVolComp(props) {
 
     if (holdValue.onActive) {
       if (holdValue.location === "Volunteer") {
+        console.log(holdValue.holdId);
+        console.log("vol");
         navigate("/admin/managevolunteers/editVolunteer/" + holdValue.holdId);
       } else {
+        console.log(holdValue.holdId);
+        console.log("contact");
         navigate("/admin/managevolunteers/editContact/" + holdValue.holdId);
       }
     }

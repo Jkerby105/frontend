@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, redirect, Form, useLoaderData} from "react-router-dom";
+import { redirect, Form, useLoaderData} from "react-router-dom";
+import { tokenLoader } from '../../util/authentication';
 
 export function EditEmergency() {
    
@@ -50,10 +51,11 @@ export function EditEmergency() {
 
 export async function loader({request, params}){
     const id = params.id;
-
+    const token = tokenLoader();
     const response = await fetch("http://localhost:3001/emergency/" + id, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
     });
   
@@ -77,11 +79,13 @@ export async function action({request,params}){
     EmergencyAddress: data.get('emergencyAddress'),
   }
 
+  const token = tokenLoader();
 
   const response = await fetch("http://localhost:3001/emergency/Edit", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: token,
     },
     body: JSON.stringify(info),
   });

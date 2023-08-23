@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, redirect, Form, useLoaderData } from "react-router-dom";
+import { tokenLoader } from '../../util/authentication';
 
 export function EditVolunteer() {
   const data = useLoaderData();
   const [opportunitiesData, opportunitiesDataSet] = useState();
+  const token = tokenLoader();
 
   useEffect(() => {
-    fetch("http://localhost:3001/opportunities")
+    fetch("http://localhost:3001/opportunities",{
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    })
       .then((response) => {
         return response
           .json()
@@ -207,14 +214,17 @@ export function EditVolunteer() {
 
 export async function loader({ request, params }) {
   const id = params.id;
-
+    console.log(id);
+    const token = tokenLoader();
   const response = await fetch("http://localhost:3001/volunteer/" + id, {
     headers: {
       "Content-Type": "application/json",
+      Authorization: token,
     },
   });
 
   const data = await response.json();
+  console.log(data);
 
   if (response.ok) {
     return data;
@@ -224,6 +234,8 @@ export async function loader({ request, params }) {
 export async function action({ request, params }) {
   const id = params.id;
   const data = await request.formData();
+  const token = tokenLoader();
+
 
   const info = {
     ID : id,
@@ -246,6 +258,7 @@ export async function action({ request, params }) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: token,
     },
     body: JSON.stringify(info),
   });
